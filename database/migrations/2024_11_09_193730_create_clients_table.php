@@ -6,24 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->integer('idClient')->autoIncrement();
+            $table->id(); // Laravel por defecto crea una columna id
             $table->string('name');
             $table->string('surname');
-            $table->char('phone',11);//limita en 11 los numeros en el telofono (contando por ej: +34)
-            $table->string('email')->unique();//garantizamos que solo sea uno
+            $table->char('phone', 15);
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('clients');

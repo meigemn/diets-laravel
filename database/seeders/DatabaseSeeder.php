@@ -2,22 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Client;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        \App\Models\Client::factory(3) // Crea 3 clientes
+            ->has(\App\Models\Diet::factory(4), 'diets') // Crea 4 dietas para cada cliente
+            ->create(); // Guarda los datos en la base de datos
     }
 }

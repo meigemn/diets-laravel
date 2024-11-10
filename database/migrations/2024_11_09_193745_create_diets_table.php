@@ -6,24 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('diets', function (Blueprint $table) {
-            $table->integer('idDiet')->autoIncrement;
+            $table->id(); // Laravel por defecto crea una columna id
+            $table->unsignedBigInteger('client_id');
             $table->string('title');
             $table->string('description');
-            $table->decimal('totalCalories',10,2)->default(0);//nombre,numTotal,decRedondeados
+            $table->decimal('totalCalories', 10, 2)->default(0);
             $table->date('date');
-            $table->timestamps();//laravel crea dos columnas "created_at" y "updated_at"
+            $table->timestamps();
+
+            // Relación de clave foránea
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('diets');

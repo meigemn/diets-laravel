@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Diet extends Model
 {
-    public function clients()//tabla clients
+    use HasFactory;
+
+    public function client() // Relación de muchos a uno
     {
-        return $this->belongsTo(Client::class);//relacion 1-1
+        return $this->belongsTo(Client::class);
     }
 }

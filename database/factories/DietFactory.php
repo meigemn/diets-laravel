@@ -3,27 +3,21 @@
 namespace Database\Factories;
 
 use App\Models\Client;
+use App\Models\Diet;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Diet>
- */
 class DietFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Diet::class;
+
+    public function definition()
     {
         return [
-            //configuramos la factoria para Diets
-            'client_id' => Client::factory(),//asocia cada dieta a un cliente
+            'client_id' => Client::factory(), // Relacionamos cada dieta con un cliente creado
             'title' => $this->faker->word,
-            'description'=> $this->faker->sentence,
-            'totalCalories' => $this->faker->numberBetween(100,10000),
-            'date' => $this->faker->date,
+            'description' => $this->faker->sentence,
+            'totalCalories' => $this->faker->numberBetween(100, 10000),
+            'date' => $this->faker->date(),
         ];
     }
 }
